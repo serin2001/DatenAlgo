@@ -1,0 +1,10 @@
+if a = b then 				// 1
+		return 1				// 1
+else		
+		m = floor((a+b)/2) 		// 1
+		l = Zaehle(A, a, m)		// T(n/2)
+		r = Zaehle(A, m+1, b)	// T(n/2)
+		if A[m] != A[m+1] then	// 1
+			return l + r		// 1
+		else
+			return l + r - 1 	// 1
