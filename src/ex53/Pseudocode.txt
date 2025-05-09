@@ -1,0 +1,12 @@
+m[1..n] = new array[1..n] 		// n	// Speicherplatz reservieren
+m[n] = 0		// 1	// Fall 1 kann aus der Schleife rausgezogen werden
+for i = n-1 downto 1 do			// n	// Werte m[i] von hinten nach vorne berechnen
+	if (a[i] == 1 or i == n - 1) then		// n	// Fall 2 
+		m[i] = 1 + m[i+1]		// n
+	else 
+		if (a[i] == 2 or (i = n - 2 and a[i] >= 2)) then		// n	// Fall 3 
+			m[i] = 1 + min(m[i+1], m[i+2])		// n
+		else 
+			if (a[i] == 3 and i <= n - 3) then 		// n 	// Fall 4
+				m[i] = 1 + min(m[i+1], m[i+2], m[i+3])		// n
+return m[1]		// 1	// Berechneten Wert fuer das erste Element zurueckgeben
