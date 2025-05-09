@@ -1,0 +1,22 @@
+if a = b then 				// 1
+		return S[a]				// 1
+else		
+		m = floor((a+b)/2) 		// 1
+		if (x <= S[m]) then		// 1
+			return Suche(S, a, m, x)		// T(m/2)
+		else
+			return Suche(S, m+1, b, x)	// T(m/2)
+		
+		
+			
+			
+			
+			
+d[1..n] = new array[1..n]	// n
+max = 0		// 1
+for i = 1 to n do 		// n+1
+	d[i] = |Suche(S, 1, m, H[i]) - H[i]|		// nT(m)
+	if d[i] > max then		// n*1
+		max = d[i]	// n*1
+return max			// 1
+			
