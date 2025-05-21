@@ -8,16 +8,14 @@ public class GewinnDP {
 	static int g = 1;
 	static int n = 7;
 	static int[] a = new int[n]; // { 5, 10, 9, 7, 11, 11, 15 }; //
-	static int[] gewinn0;
-	static int[] gewinn1;
+	static int[] gewinn0 = new int[a.length];
+	static int[] gewinn1  = new int[a.length];
 
 	public static void main(String[] args) {
 		a = new Random().ints(n, 1, 36).toArray(); // Generiere n ganze Zahlen aus
 		// [1, 35]
 
-		gewinn0 = new int[a.length];
 		Arrays.fill(gewinn0, Integer.MIN_VALUE);
-		gewinn1 = new int[a.length];
 		Arrays.fill(gewinn1, Integer.MIN_VALUE);
 
 		System.out.println("Kurse:  " + Arrays.toString(a));
@@ -38,19 +36,16 @@ public class GewinnDP {
 			int zero;
 			if (gewinn0[i - 1] <= Integer.MIN_VALUE)
 				zero = A(S, i - 1, 0);
-			else
-				zero = gewinn0[i - 1];
+
 			int one;
 			if (gewinn1[i - 1] <= Integer.MIN_VALUE)
 				one = A(S, i - 1, 1);
-			else
-				one = gewinn1[i - 1];
 
 			if (j == 0) {
-				gewinn0[i] = Math.max(zero, one + S[i] - g);
+				gewinn0[i] = Math.max(gewinn0[i - 1], gewinn1[i - 1] + S[i] - g);
 				return gewinn0[i];
 			} else {
-				gewinn1[i] = Math.max(one, zero - S[i] - g);
+				gewinn1[i] = Math.max(gewinn1[i - 1], gewinn0[i - 1] - S[i] - g);
 				return gewinn1[i];
 			}
 		}
