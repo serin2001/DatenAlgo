@@ -1,0 +1,32 @@
+if k <= m		// Abbruch		// O(1)
+	m = m - k
+	return 0
+else 
+	// Passende Tankstelle, Distanz und Spritbilanz zu speichern 
+	T = {}	// Leere Liste			// O(1)
+	D = {}	// Leere Liste			// O(1)
+	B = {}	// Leere Liste			// O(1)
+	for i = 1 to n do 				// O(n)
+		if (A[i][1] <= pos + m and A[i][1] > pos)		// O(1) 
+			// Listenerweiterung	
+			T = T |_| {i}								// O(1)
+			D = D |_| {A[i][1] - pos}					// O(1)
+			B = B |_| {m - (A[i][1] - pos) + A[i][2]}	// O(1)
+	// Finde die ergiebigste Tankstelle			
+	maximum = B[1]				// O(1)
+	maxIndex = 1				// O(1)
+	for i = 1 to |B| do			// O(1)
+		if maximum <= B[i] then // O(1)
+			maximum = B[i]		// O(1)
+			maxIndex = i		// O(1)
+	pos = pos + D[maxIndex]		// Akt. Position akt.	// O(1)
+	return 1 + Rekursion(A, n, k - D[maxIndex], B[maxIndex])	// Restweg, Tankinhalt akt.	// O(n)
+			
+			
+pos = 0										// O(1)
+A = new array [1..n][1..2]					// O(n)
+for i = 1 to n do							// O(n)
+	A[i][1] = P[i]							// 1n		
+	A[i][2] = E[i]							// 1n
+Sortiere A nach Entfernung von Startort		// O(n log n)
+return Rekursion(A, n, k, m)				// O(n)
