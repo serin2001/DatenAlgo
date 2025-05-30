@@ -1,0 +1,17 @@
+scheduling = new array[1..n]					// O(n)
+bonus_per_week = new array[1..n]				// O(n)
+einnahmen = new array[1..n]						// O(n)
+auftrag = new Auftrag[1..n]		// Array ueber Verbundobjekte // O(n)
+for i = 1 to n do								// O(n)
+	// Bonus pro Woche in Geldwert
+	bonus_per_week[i] = G[i] * B[i] / 100
+	a = new Auftrag				// Verbundobjekt
+	NR[a] = i; GE[a] = G[i]; BP[a] = B[i]; BPW[a] = bonus_per_week[i]
+	auftrag[i] = a
+Sortiere auftrag absteigend nach BPW (Bonus/Woche in Geldwert)		// O(n log n)
+cash = 0											// O(1)
+for i = 1 to n do									// O(n)
+	scheduling[i] = NR[auftrag[i]]
+	einnahmen[i] = GE[auftrag[i]] + (n - i) * BPW[auftrag[i]]
+	cash = cash + einnahmen[i]
+return cash 										// O(1)
