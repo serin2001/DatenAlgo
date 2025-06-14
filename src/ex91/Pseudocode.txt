@@ -1,0 +1,61 @@
+	// Initializes the queue with two empty stacks
+    init():
+    in = new Stack(maxSize)     // Stack for adding elements
+    out = new Stack(maxSize)    // Stack for removing elements
+	
+    // Adds a new element x to the queue
+    enqueue(x):
+    in.push(x)                   // Push the element onto the in stack
+
+    // Removes the oldest element from the queue and returns it
+    dequeue():
+    if (out.isEmpty() = true) then         // if out is empty
+    	while (not in.isEmpty() = true) do // Move all elements from in to out
+        	out.push(in.pop())
+    return out.pop()              // Pop the top element from the out stack
+
+    // Returns the number of elements in the queue
+    size():
+    return in.size() + out.size() // the sum of both stacks
+    
+    
+    //Stack    
+    // Initializes the stack with a fixed size
+    init(maxSize):
+    array = new Array[1..maxSize]  // Array for the stack elements
+    top = -1                     // Pointer to the top element (initially empty)
+
+    // Adds an element x to the top of the stack
+    push(x):
+    if (top + 1 < maxSize) then // Check if the stack is not full
+        top = top + 1           // Increase the pointer
+        array[top] = x          // Add the element
+    else
+        throw "Stack Overflow"   // Error if the stack is full
+
+    // Removes the top element of the stack and returns it
+    pop():
+    if (top >= 0) then          // Check if the stack is not empty
+        value = array[top]      // Store the top element
+        top = top - 1           // Decrease the pointer
+        return value            // Return the element
+    else
+        throw "Stack Underflow"  // Error if the stack is empty
+
+    // Returns the top element of the stack without removing it
+    peek():
+    if (top >= 0) then
+        return array[top]       // Return the top element
+    else
+        throw "Stack is empty"   // Error if the stack is empty
+
+    // Checks if the stack is empty
+    isEmpty():
+    if (top == -1) then
+      	return true				// true if the stack is empty
+    else 
+    	return false            // false if the stack is not empty
+
+    // Returns the number of elements in the stack
+    size():
+    return top + 1              // Number is the pointer + 1
