@@ -1,0 +1,5 @@
+if (v = NIL) then		// Abbruch		// O(1)
+	return TRUE
+if (key[v] <= min or key[v] >= max) then	// Falls key[v] nicht erlaubt // O(1)
+	return FALSE
+return (isBST(left[v], min, key[v]) and isBST(right[v], key[v], max))	// 2 Rekursionen fuer Teilbaeume	// 2 * O((|V|-1)/2)
