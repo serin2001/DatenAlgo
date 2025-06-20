@@ -76,36 +76,29 @@ class MaxHeap {
 		heap.set(j, temp);
 	}
 	
-    private int leftChild(int pos) { return (2 * pos) + 1; }
+    private int leftChild(int pos) { 
+    	return (2 * pos) + 1; 
+    }
 
-    private int rightChild(int pos)
-    {
+    private int rightChild(int pos) {
         return (2 * pos) + 2;
     }
     
-    public void print()
-    {
+    public void print(){
         for (int i = 0; i < heap.size() / 2; i++) {
-
             System.out.print("Node: " + heap.get(i));
-
-            if (leftChild(i) < heap.size()) // if the child is out of the bound
-                        // of the array
+            if (leftChild(i) < heap.size()) 
                 System.out.print(", Left Child: "
                                  + heap.get(leftChild(i)));
-
-            if (rightChild(i) < heap.size()) // the right child index must not
-                        // be out of the index of the array
+            if (rightChild(i) < heap.size()) 
                 System.out.print(", Right Child: "
                                  + heap.get(rightChild(i)));
-
-            System.out.println(); // for new line
+            System.out.println(); 
         }
     }
     
 	public static void main(String[] args) {
 		MaxHeap tree = new MaxHeap();
-		// a
 		tree.insert(38);
 		tree.insert(17);
 		tree.insert(3);
@@ -114,14 +107,10 @@ class MaxHeap {
 		tree.insert(15);
 		tree.insert(11);
 		
-		tree.print();
-		
+		tree.print();		
 		System.out.println("Max: " + tree.findMaximum().toString());
-		
 		System.out.println("ArrayList contents: " + tree.heap);
-		
 		System.out.println("Max: " + tree.extractMaximum().toString());
-		
 		System.out.println("ArrayList contents: " + tree.heap);
 		tree.print();
 	}

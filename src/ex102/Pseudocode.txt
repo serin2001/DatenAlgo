@@ -1,0 +1,47 @@
+init(): 
+size = 0
+capacity = 6 								// Max. Kapazitaet des Heaps
+heap = new Array[1..capacity] 
+
+einfuegen(x):
+if (size = capacity) then 
+	return Fehler Heap ist voll 			// Fehler
+heap[size] = x 								// Fuege das Element am Ende hinzu
+size = size + 1 							// Erhoehe die Groesse
+heapifyUp(size - 1) 						// Stelle die Heap-Eigenschaft wieder her
+
+heapifyUp(index):
+parentIndex = (index - 1)/2
+if (index > 0 and heap[index] > heap[parentIndex]) then
+   swap(index, parentIndex)
+   heapifyUp(parentIndex) 					// Rekursiver Aufruf
+   	     
+finde_Maximum():
+if (size = 0) then 
+	return Fehler Heap ist leer				// Fehler 	
+return heap[0] 								// O(1)
+
+entnehme_Maximum():
+if (size = 0) then return Heap ist leer		// Fehler
+maxValue = heap[0] 							// Speichere das Maximum
+heap[0] = heap[size - 1] 					// Setze das letzte Element an die Wurzel
+size = size - 1 							// Verringere die Groesse
+heapifyDown(0) 								// Stelle die Heap-Eigenschaft wieder her
+return maxValue 							// O(log n)
+
+heapifyDown(index):
+largest = index
+leftIndex = 2 * index + 1
+rightIndex = 2 * index + 2
+if (leftIndex < size and heap[leftIndex] > heap[largest]) then
+	largest = leftIndex
+if (rightIndex < size and heap[rightIndex] > heap[largest]) then
+	largest = rightIndex
+if (largest != index) then
+	swap(index, largest)
+    heapifyDown(largest) 					// Rekursiver Aufruf
+
+swap(i, j):									// Tausche Elemente i und j
+temp = heap[i]
+heap[i] = heap[j]
+heap[j] = temp
