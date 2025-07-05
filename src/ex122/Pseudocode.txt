@@ -1,0 +1,29 @@
+color = new Array[1..|V|]
+for i = 1 to |V| do
+    color[i] = -1 // -1 bedeutet unbesucht
+G1 = {} 
+G2 = {} 
+
+// Hauptschleife 
+for each v in V do
+    if (color[v] = -1) then // Wenn Knoten v unbesucht
+        if (DFS(v, 0) = FALSE) then // Starte DFS mit v und Farbe 0
+            return "Der Graph nicht bipartit"
+return G1, G2 // Rueckgabe der beiden Gruppen
+    
+DFS(node, c):
+color[node] = c // Faerbe den Knoten mit der Farbe c
+if (c = 0) then
+    G1 = G1 + {node}    // Mengenvereinigung 
+else
+    G2 = G2 + {node}    // Mengenvereinigung 
+
+// Durchlaufe alle Nachbarn
+for each neighbor in Adj[node] do
+    if (color[neighbor] = -1) then // Wenn Nachbar unbesucht
+        if (DFS(neighbor, 1 - c) = FALSE) then // Wechsle die Farbe
+            return FALSE // Fehler, wenn die Faerbung nicht moeglich ist
+    else if (color[neighbor] = c) then // Wenn Nachbar die gleiche Farbe hat
+        return FALSE // Der Graph nicht bipartit
+return TRUE 
+    
