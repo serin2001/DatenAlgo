@@ -35,7 +35,7 @@ public class NegativeCycleFinder {
         // Initialisierung
         for (int i = 0; i < numVertices; i++) {
             dist[i] = Double.POSITIVE_INFINITY; // Setze alle Distanzen auf unendlich
-            predecessor[i] = -1; // Vorgänger auf -1 setzen
+            predecessor[i] = -1; // Vorgaenger auf -1 setzen
         }
 
         // Setze die Distanz des Startknotens auf 0
@@ -51,7 +51,7 @@ public class NegativeCycleFinder {
             }
         }
 
-        // Überprüfe auf negative Kreise
+        // Ueberpruefe auf negative Kreise
         for (Edge edge : edges) {
             if (dist[edge.u] != Double.POSITIVE_INFINITY && dist[edge.u] + edge.weight < dist[edge.v]) {
                 // Ein negativer Kreis wurde gefunden
@@ -70,20 +70,20 @@ public class NegativeCycleFinder {
         // Finde den Startpunkt des Kreises
         int current = start;
         for (int i = 0; i < numVertices; i++) {
-            current = predecessor[current]; // Gehe zurück, um den Kreis zu finden
+            current = predecessor[current]; // Gehe zurueck im Kreis
         }
 
         // Speichere den Startpunkt des Kreises
         int cycleStart = current;
         cycle.add(cycleStart);
 
-        // Gehe weiter, um den gesamten Kreis zu extrahieren
+        // Gehe weiter im Kreis
         current = predecessor[cycleStart];
         while (current != cycleStart) {
             cycle.add(current);
             current = predecessor[current];
         }
-        cycle.add(cycleStart); // Füge den Startpunkt des Kreises hinzu
+        cycle.add(cycleStart); // Fuege den Startpunkt des Kreises hinzu
 
         // Ausgabe des negativen Kreises
         System.out.println("Negativer Kreis gefunden:");
