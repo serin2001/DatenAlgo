@@ -1,0 +1,39 @@
+dist = new Array[1..|V|] 
+predecessor = new Array[1..|V|]
+for i = 1 to |V| do
+    dist[i] = inf // Start-Distanz unendlich
+    precedessor[i] = NULL // Vorgaengerknoten
+
+startNode = 1 
+dist[startNode] = 0
+
+for i = 1 to |V| do
+    for each edge (u, v) in E do
+        if (dist[u] + w(u, v) < dist[v]) then
+            dist[v] = dist[u] + w(u, v)
+            predecessor[v] = u
+
+    // Pruefe auf negative Kreise
+for each edge (u, v) in E do
+    if (dist[u] + w(u, v) < dist[v]) then
+        return NegCycle(predecessor, v) // Negativer Kreis
+return "Kein negativer Kreis"
+
+Function ExtractNegativeCycle(predecessor, start):
+cycle = {}
+current = start
+
+for i = 1 to |V| do // Pruefe |V| Schritte, um Kreis zu erkennen
+    current = predecessor[current]
+
+cycleStart = current
+cycle = cycle + {cycleStart}
+
+// Gehe weiter im Kreis
+current = predecessor[cycleStart]
+while (current != cycleStart) do
+    cycle = cycle + {current}
+    current = predecessor[current]
+
+cycle = cycle + {cycleStart} // Schliesse den Kreis
+return cycle
