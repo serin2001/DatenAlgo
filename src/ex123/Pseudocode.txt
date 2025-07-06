@@ -36,4 +36,11 @@ while (current != cycleStart) do
     current = predecessor[current]
 
 cycle = cycle + {cycleStart} // Schliesse den Kreis
-return cycle
+return reverse(cycle, size(cycle)) // Gebe den gespiegelten Kreis zurueck
+
+
+Function reverse(cycle, n):
+mirror = new Array[1..n]
+for i = 1 to n do
+    mirror[i] = cycle[n-i+1]
+return mirror
